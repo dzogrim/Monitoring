@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright (c) 2018 Pure Storage, Inc.
+# Copyright (c) 2019 Pure Storage, Inc.
 #
 # * Overview
 #
@@ -20,10 +20,10 @@
 #  purestorage       Pure Storage Python REST Client (https://github.com/purestorage/rest-client)
 
 __author__ = "Eugenio Grosso"
-__copyright__ = "Copyright 2018, Pure Storage Inc."
+__copyright__ = "Copyright 2019, Pure Storage Inc."
 __credits__ = "Christian Kauhaus"
 __license__ = "Apache v2.0"
-__version__ = "1.2"
+__version__ = "1.3"
 __maintainer__ = "Eugenio Grosso"
 __email__ = "geneg@purestorage.com"
 __status__ = "Production"
@@ -78,6 +78,7 @@ class PureFAperf(nagiosplugin.Resource):
     def get_perf(self):
         """Gets performance counters from flasharray."""
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        logging.captureWarnings(True)
         fa = purestorage.FlashArray(self.endpoint, api_token=self.apitoken)
         if (self.volname is None):
             fainfo = fa.get(action='monitor')[0]
