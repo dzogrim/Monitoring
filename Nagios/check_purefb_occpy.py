@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright (c) 2018 Pure Storage, Inc.
+# Copyright (c) 2019 Pure Storage, Inc.
 #
 # * Overview
 #
@@ -19,10 +19,10 @@
 #  purity_fb         Pure Storage Python REST Client for FlashBlade (https://github.com/purestorage/purity_fb_python_client)
 
 __author__ = "Eugenio Grosso"
-__copyright__ = "Copyright 2018, Pure Storage Inc."
+__copyright__ = "Copyright 2019, Pure Storage Inc."
 __credits__ = "Christian Kauhaus"
 __license__ = "Apache v2.0"
-__version__ = "1.2"
+__version__ = "1.3"
 __maintainer__ = "Eugenio Grosso"
 __email__ = "geneg@purestorage.com"
 __status__ = "Production"
@@ -83,6 +83,7 @@ class PureFBoccpy(nagiosplugin.Resource):
     def get_occupancy(self):
         """Gets occupancy values from FlasgBlade ."""
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        logging.captureWarnings(True)
         fb = PurityFb(self.endpoint)
         fb.disable_verify_ssl()
         fb.login(self.apitoken)
